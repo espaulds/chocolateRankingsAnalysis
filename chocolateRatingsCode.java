@@ -1,9 +1,10 @@
 import java.util.*;
 import java.io.*; //io --> input-output //* --> File
-public class chocolateRatingsCode{
+public class ChocolateRatingsCode {
 
-    public static void main(String[] args){
-        //testing helper methods: getRidOfDuplicates, counts, totRatings, averageRating
+    public static void main(String[] args) throws FileNotFoundException {
+       /*
+       //testing helper methods: getRidOfDuplicates, counts, totRatings, averageRating
             //getRideOfDuplicates test
         ArrayList<String> testValues = new ArrayList<>(Arrays.asList("a", "b", "c", "a", "b", "d"));
         System.out.println(getRidOfDuplicates(testValues)); //should be ["a", "b", "c", "d"]
@@ -19,24 +20,122 @@ public class chocolateRatingsCode{
         System.out.println(averageRating(noDuplicates, totRatings, counts)); //should be [1.0, 2.0, 3.0, 4.0]
 
         ArrayList<Double> averageRatings = averageRating(noDuplicates, totRatings, counts);
-        System.out.println(highestAverageRating(averageRatings, noDuplicates));
+        System.out.println(highestAverageRating(averageRatings, noDuplicates)); //should be d
+        */
+        
+        /*
+        //test with smaller csv - yogurt brands
+        ArrayList<Double> ratingsTest = parseCSVRatings("/Users/espaulding/Desktop/test.csv"); //testRatings
+
+        String testCol = "Brand";
+        ArrayList<String> testColAL = parseCSVStrings("/Users/espaulding/Desktop/test.csv", testCol); //testValues
+        ArrayList<String> testColALND = getRidOfDuplicates(testColAL); //noDuplicates
+        ArrayList<Integer> testCounts = counts(testColAL); //counts
+        ArrayList<Double> testTotRatings = totRatings(testColAL, ratingsTest); //totRatings
+        ArrayList<Double> testAveRatings = averageRating(testColALND, testTotRatings, testCounts); //averageRatings
+        String testHAR = highestAverageRating(testAveRatings, testColALND);
+        String testLAR = lowestAverageRating(testAveRatings, testColALND);
+        Double testHARV = highestAverageRatingValue(testAveRatings, testColALND);
+        Double testLARV = lowestAverageRatingValue(testAveRatings, testColALND);
+
+        //print statements with questions and answers
+        System.out.println("which yogurt brand has the greatest average rating?");
+        System.out.println("answer: " + testHAR + " (average rating: " + testHARV + ")");
+        System.out.println("the lowest?");
+        System.out.println("answer: " + testLAR + " (average rating: " + testLARV + ")");
+        */
+
+        //**data set testing**
+        System.out.println();
+        System.out.println("Chocolate Rankings Dataset Questions:");
+        System.out.println();
+
         //getting all ratings in an AL (used in all questions)
-        //ArrayList<Double> ratings = parseCSVRatings("/Users/espaulding/Desktop/chocolateRatingssAnalysis/ChocolateDataSet.csv");
+        ArrayList<Double> ratings = parseCSVRatings("/Users/espaulding/Desktop/chocolateRatingsAnalysis/ChocolateDataSet.csv"); //testRatings
 
         //question #1 --> which country of origin produces the best chocolate?
-        //String questionOneCol = "Country of Bean Origin"
-        //ArrayList<String> questionOneColAL = parseCSVCol("/Users/espaulding/Desktop/chocolateRatingsAnalysis/ChocolateDataSet.csv", questionOneCol);
-        //ArrayList<String> questionOneColAlND = getRidOfDuplicates(questionOneColAL);
-        //ArrayList<Integer> questionOneCounts = counts(questionOneColAlND);
-        //ArrayList<Double> questionOneTotRatings = totRatings(questionOneColAlND, ratings);
-        //ArrayList<Double> questionOneAverageRatings = averageRating(questionOneColAlND, questionOneTotRatings, questionOneCounts);
+        String questionOneCol = "Country of Bean Origin";
+        ArrayList<String> questionOneColAL = parseCSVStrings("/Users/espaulding/Desktop/chocolateRatingsAnalysis/ChocolateDataSet.csv", questionOneCol); //testValues
+        ArrayList<String> questionOneColALND = getRidOfDuplicates(questionOneColAL); //noDuplicates
+        ArrayList<Integer> questionOneCounts = counts(questionOneColAL); //counts
+        ArrayList<Double> questionOneTotRatings = totRatings(questionOneColAL, ratings); //totRatings
+        ArrayList<Double> questionOneAverageRatings = averageRating(questionOneColALND, questionOneTotRatings, questionOneCounts); //averageRatings
+        String questionOneHAR = highestAverageRating(questionOneAverageRatings, questionOneColALND);
+        String questionOneLAR = lowestAverageRating(questionOneAverageRatings, questionOneColALND);
+        Double questionOneHARV = highestAverageRatingValue(questionOneAverageRatings, questionOneColALND);
+        Double questionOneLARV = lowestAverageRatingValue(questionOneAverageRatings, questionOneColALND);
 
 
+        //print statements with questions and answers
+        System.out.println("#1: which country of bean origin has the greatest average rating?");
+        System.out.println("answer: " + questionOneHAR + " (average rating: " + questionOneHARV + ")");
+        System.out.println("the lowest?");
+        System.out.println("answer: " + questionOneLAR + " (average rating: " + questionOneLARV + ")");
 
-        //question #2 --> what cocoa percentage produces the best chocolate?
-        //question #3 --> which company manufacturer gets the best ratings?
-        //question #4 --> which year of doing these ratings has the highest average ratings? the lowest?
+        System.out.println();
         
+        //question #2 --> what cocoa percentage produces the best chocolate?
+        String questionTwoCol = "Cocoa Percent";
+        ArrayList<String> questionTwoColAL = parseCSVStrings("/Users/espaulding/Desktop/chocolateRatingsAnalysis/ChocolateDataSet.csv", questionTwoCol); //testValues
+        ArrayList<String> questionTwoColALND = getRidOfDuplicates(questionTwoColAL); //noDuplicates
+        ArrayList<Integer> questionTwoCounts = counts(questionTwoColAL); //counts
+        ArrayList<Double> questionTwoTotRatings = totRatings(questionTwoColAL, ratings); //totRatings
+        ArrayList<Double> questionTwoAverageRatings = averageRating(questionTwoColALND, questionTwoTotRatings, questionTwoCounts); //averageRatings
+        String questionTwoHAR = highestAverageRating(questionTwoAverageRatings, questionTwoColALND);
+        String questionTwoLAR = lowestAverageRating(questionTwoAverageRatings, questionTwoColALND);
+        Double questionTwoHARV = highestAverageRatingValue(questionTwoAverageRatings, questionTwoColALND);
+        Double questionTwoLARV = lowestAverageRatingValue(questionTwoAverageRatings, questionTwoColALND);
+
+        //print statements with questions and answers
+        System.out.println("#2: which cocoa percentage has the greatest average rating?");
+        System.out.println("answer: " + questionTwoHAR + " (average rating: " + questionTwoHARV + ")");
+        System.out.println("the lowest?");
+        System.out.println("answer: " + questionTwoLAR + " (average rating: " + questionTwoLARV + ")");
+
+        System.out.println();
+
+        
+        //question #3 --> which company manufacturer gets the best ratings?
+        String questionThreeCol = "Company (Manufacturer)";
+        ArrayList<String> questionThreeColAL = parseCSVStrings("/Users/espaulding/Desktop/chocolateRatingsAnalysis/ChocolateDataSet.csv", questionThreeCol);
+        ArrayList<String> questionThreeColALND = getRidOfDuplicates(questionThreeColAL);
+        ArrayList<Integer> questionThreeCounts = counts(questionThreeColAL);
+        ArrayList<Double> questionThreeTotRatings = totRatings(questionThreeColAL, ratings);
+        ArrayList<Double> questionThreeAverageRatings = averageRating(questionThreeColALND, questionThreeTotRatings, questionThreeCounts);
+        String questionThreeHAR = highestAverageRating(questionThreeAverageRatings, questionThreeColALND);
+        String questionThreeLAR = lowestAverageRating(questionThreeAverageRatings, questionThreeColALND);
+        Double questionThreeHARV = highestAverageRatingValue(questionThreeAverageRatings, questionThreeColALND);
+        Double questionThreeLARV = lowestAverageRatingValue(questionThreeAverageRatings, questionThreeColALND);
+
+        //print statements with questions and answers
+        System.out.println("#3: which company/manufacturer has the greatest average rating?");
+        System.out.println("answer: " + questionThreeHAR + " (average rating: " + questionThreeHARV + ")");
+        System.out.println("the lowest?");
+        System.out.println("answer: " + questionThreeLAR + " (average rating: " + questionThreeLARV + ")");
+
+        System.out.println();
+        
+        
+        //question #4 --> which year of doing these ratings has the highest average ratings? the lowest?
+        String questionFourCol = "Review Date";
+        //ArrayList<String> questionOneColAL = parseCSVStrings("/Users/espaulding/Desktop/chocolateRatingsAnalysis/ChocolateDataSet.csv", questionOneCol);
+        ArrayList<String> questionFourColAL = parseCSVStrings("/Users/espaulding/Desktop/chocolateRatingsAnalysis/ChocolateDataSet.csv", questionFourCol); //testValues
+        ArrayList<String> questionFourColALND = getRidOfDuplicates(questionFourColAL); //noDuplicates
+        ArrayList<Integer> questionFourCounts = counts(questionFourColAL); //counts
+        ArrayList<Double> questionFourTotRatings = totRatings(questionFourColAL, ratings); //totRatings
+        ArrayList<Double> questionFourAverageRatings = averageRating(questionFourColALND, questionFourTotRatings, questionFourCounts); //averageRatings
+        String questionFourHAR = highestAverageRating(questionFourAverageRatings, questionFourColALND);
+        String questionFourLAR = lowestAverageRating(questionFourAverageRatings, questionFourColALND);
+        Double questionFourHARV = highestAverageRatingValue(questionFourAverageRatings, questionFourColALND);
+        Double questionFourLARV = lowestAverageRatingValue(questionFourAverageRatings, questionFourColALND);
+
+         //print statements with questions and answers
+        System.out.println("#4: which year of these reviews has the greatest average rating?");
+        System.out.println("answer: " + questionFourHAR + " (average rating: " + questionFourHARV + ")");
+        System.out.println("the lowest?");
+        System.out.println("answer: " + questionFourLAR + " (average rating: " + questionFourLARV + ")");
+
+        System.out.println();
         
         //parseCSVBeanOrigin("/Users/espaulding/Desktop/chocolateRatingsAnalysis/ChocolateDataSet.csv");
     }
@@ -49,37 +148,37 @@ public class chocolateRatingsCode{
         String[] arrHeader = header.split(",");
         ArrayList<String> headerAL = new ArrayList<String>(Arrays.asList(arrHeader));
 
-        //creating arraylist for all values in Ratings column
+        //creating arraylist for all values in Rating column
         ArrayList<Double> ratings = new ArrayList<>();
 
-        //getting index of Ratings in dataset
-        int index = headerAL.indexOf("Ratings"); //finding index
+        //getting index of Rating in dataset
+        int index = headerAL.indexOf("Rating"); //finding index
 
         while(key.hasNextLine() == true){
             //parsing each individual line
             String line = key.nextLine();
-            String[] arrOfLine = line.split(",");
+            String[] arrOfLine = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
             ArrayList<String> alOfLine = new ArrayList<>(Arrays.asList(arrOfLine));
             //also could convert manually into AL using for each loop
 
-            //grabbing Ratings in each line
-            //adding value all the values in the Ratings col into arraylist
+            //grabbing Rating in each line
+            //adding value all the values in the Rating col into arraylist
             ratings.add(Double.parseDouble(alOfLine.get(index)));
         }   
         key.close(); //closing scanner
         return ratings; //returning arraylist of column ratings
     }
 
-    //method to get AL of a proposed col (input is file and name of col (ex. country of bean origin))
+    //method to get AL of a proposed col that holds strings (input is file and name of col (ex. country of bean origin))
         //used to be for one col, but since most of other questions will use a similar method, wanted to paramaterize and make it more accessable/usable to entire class
-    public static ArrayList<String> parseCSVCol(String filename, String colName) throws FileNotFoundException {
+    public static ArrayList<String> parseCSVStrings(String filename, String colName) throws FileNotFoundException {
         Scanner key = new Scanner(new File(filename));
         String header = key.nextLine();
         //parsing header
         String[] arrHeader = header.split(",");
         ArrayList<String> headerAL = new ArrayList<String>(Arrays.asList(arrHeader));
 
-        //creating arraylist for all values in the column
+        //creating arraylist for all values in the column that are Strings
         ArrayList<String> col = new ArrayList<>();
 
         //getting index of column in dataset
@@ -88,7 +187,7 @@ public class chocolateRatingsCode{
         while(key.hasNextLine() == true){
             //parsing each individual line
             String line = key.nextLine();
-            String[] arrOfLine = line.split(",");
+            String[] arrOfLine = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
             ArrayList<String> alOfLine = new ArrayList<>(Arrays.asList(arrOfLine));
             //also could convert manually into AL using for each loop
 
@@ -101,7 +200,7 @@ public class chocolateRatingsCode{
     }
 
     //method for question #1 --> which country of origin produces the best chocolate? (highest average)
-    public static  String highestAverageRating(ArrayList<Double> averageRatings, ArrayList<String> noDuplicates){
+    public static String highestAverageRating(ArrayList<Double> averageRatings, ArrayList<String> noDuplicates){
         //test for the largest average
         double largest = averageRatings.get(0);
         //holder for the index of  the largest average rating
@@ -114,8 +213,57 @@ public class chocolateRatingsCode{
             }
         }
         //if tie, will just go to first index
-        //should I not have return but have print of highest three?
         return noDuplicates.get(index);
+    }
+
+    //gets the average rating value so the viewer can see the rating of the highest term
+    public static Double highestAverageRatingValue(ArrayList<Double> averageRatings, ArrayList<String> noDuplicates){
+        //test for the largest average
+        double largest = averageRatings.get(0);
+        //holder for the index of  the largest average rating
+        int index = 0;
+        //can use either noDuplicates or averageRatings bc they are parallel
+        for(int i = 0; i<averageRatings.size(); i++){
+            if(averageRatings.get(i) > largest){
+                largest = averageRatings.get(i);
+                index = i;
+            }
+        }
+        //if tie, will just go to first index
+        return averageRatings.get(index);
+    }
+
+    public static String lowestAverageRating(ArrayList<Double> averageRatings, ArrayList<String> noDuplicates){
+        //test for the lowest average
+        double lowest = averageRatings.get(0);
+        //holder for the index of  the lowest average rating
+        int index = 0;
+        //can use either noDuplicates or averageRatings bc they are parallel
+        for(int i = 0; i<averageRatings.size(); i++){
+            if(averageRatings.get(i) < lowest){
+                lowest = averageRatings.get(i);
+                index = i;
+            }
+        }
+        //if tie, will just go to first index
+        return noDuplicates.get(index);
+    }
+
+    //gets the average rating value so the viewer can see the rating of the lowest term
+    public static Double lowestAverageRatingValue(ArrayList<Double> averageRatings, ArrayList<String> noDuplicates){
+        //test for the lowest average
+        double lowest = averageRatings.get(0);
+        //holder for the index of  the lowest average rating
+        int index = 0;
+        //can use either noDuplicates or averageRatings bc they are parallel
+        for(int i = 0; i<averageRatings.size(); i++){
+            if(averageRatings.get(i) < lowest){
+                lowest = averageRatings.get(i);
+                index = i;
+            }
+        }
+        //if tie, will just go to first index
+        return averageRatings.get(index);
     }
 
     //helper methods
@@ -131,6 +279,7 @@ public class chocolateRatingsCode{
         }
         return noDuplicates;
     }
+
     //helper method that returns how many times a specific item in an arraylist was mentioned; parallel to noDuplicates AL
     public static ArrayList<Integer> counts(ArrayList<String> withDuplicates){
         ArrayList<String> noDuplicates = new ArrayList<>(); //to make parallel to and for if/else expression
