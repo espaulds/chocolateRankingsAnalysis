@@ -33,7 +33,6 @@ public class ChocolateRatingsCode {
         //Double that holds the value of the item with the lowest average rating
         Double questionOneLARV = lowestAverageRatingValue(questionOneAverageRatings);
 
-
         //print statements with questions and answers
         System.out.println("#1: which country of bean origin has the greatest average rating?");
         System.out.println("answer: " + questionOneHAR + " (average rating: " + questionOneHARV + ")");
@@ -63,7 +62,7 @@ public class ChocolateRatingsCode {
         System.out.println();
 
         
-        //question #3 --> which company manufacturer gets the best ratings?
+        //question #3A--> which country that produces chocolate gets the best ratings?
         String questionThreeACol = "Company Location";
         ArrayList<String> questionThreeAColAL = parseCSVStrings("/Users/espaulding/Desktop/chocolateRatingsAnalysis/ChocolateDataSet.csv", questionThreeACol);
         ArrayList<String> questionThreeAColALND = getRidOfDuplicates(questionThreeAColAL);
@@ -83,6 +82,7 @@ public class ChocolateRatingsCode {
 
         System.out.println();
         
+        //question #3B -> which company/manufacturer within that best country gets the best ratings?
         String questionThreeBCol = "Company (Manufacturer)";
         ArrayList<String> questionThreeBColAL = parseCSVStrings("/Users/espaulding/Desktop/chocolateRatingsAnalysis/ChocolateDataSet.csv", questionThreeBCol);
         ArrayList<String> questionThreeBColSpecificAL = specificItems(questionThreeAColAL, questionThreeBColAL, questionThreeAHAR);
@@ -135,7 +135,7 @@ public class ChocolateRatingsCode {
         while(key.hasNextLine() == true){
             //parsing each individual line
             String line = key.nextLine();
-            //splits the tokens up in a line with the delimeter (","), but accounts for if the comma is within quotes (won't be read as a delimeter)
+            //splits the tokens up in a line with the delimiter (","), but accounts for if the comma is within quotes (won't be read as a delimiter)
             String[] arrOfLine = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
             ArrayList<String> alOfLine = new ArrayList<>(Arrays.asList(arrOfLine));
 
@@ -148,7 +148,7 @@ public class ChocolateRatingsCode {
     }
 
     //method to get AL of a proposed col that holds strings (input is file and name of col (ex. country of bean origin))
-        //used to be for one col, but since most of other questions will use a similar method, wanted to paramaterize and make it more accessable/usable to entire class
+        //used to be for one col, but since most of other questions will use a similar method, wanted to parameterize and make it more accessible/usable to entire class
     public static ArrayList<String> parseCSVStrings(String filename, String colName) throws FileNotFoundException {
         Scanner key = new Scanner(new File(filename));
         String header = key.nextLine();
@@ -165,7 +165,7 @@ public class ChocolateRatingsCode {
         while(key.hasNextLine() == true){
             //parsing each individual line
             String line = key.nextLine();
-             //splits the tokens up in a line with the delimeter (","), but accounts for if the comma is within quotes (won't be read as a delimeter)
+             //splits the tokens up in a line with the delimiter (","), but accounts for if the comma is within quotes (won't be read as a delimiter)
             String[] arrOfLine = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
             ArrayList<String> alOfLine = new ArrayList<>(Arrays.asList(arrOfLine));
 
@@ -247,12 +247,15 @@ public class ChocolateRatingsCode {
 
     //helper methods
 
-    //helper method that takes out all the duplicates in an Array:ist
+    //helper method that takes out all the duplicates in an ArrayList
     public static ArrayList<String> getRidOfDuplicates(ArrayList<String> withDuplicates){
         ArrayList<String> noDuplicates = new ArrayList<>();
 
+        //goes through the original ArrayList and takes out any instance of repetition
         for(int i = 0; i < withDuplicates.size(); i++){
+            //if item is not already in the noDuplicates ArrayList...
             if(noDuplicates.indexOf(withDuplicates.get(i)) == -1){
+                //...add that value to the noDuplicates ArrayList
                 noDuplicates.add(withDuplicates.get(i));
             }
         }
@@ -263,14 +266,14 @@ public class ChocolateRatingsCode {
     public static ArrayList<Integer> counts(ArrayList<String> withDuplicates){
         ArrayList<String> noDuplicates = new ArrayList<>(); //to make parallel to and for if/else expression
 
-        //could call getRidOfDuplicates method but for sake of clarity and debugging gonna keep same code here
+        //could call getRidOfDuplicates method but for sake of clarity and debugging going to keep same code here
         for(int i = 0; i < withDuplicates.size(); i++){
             if(noDuplicates.indexOf(withDuplicates.get(i)) == -1){
                 noDuplicates.add(withDuplicates.get(i));
             }
         }
         //ArrayList<Integer> counts = new ArrayList<>(Arrays.asList(new Integer[noDuplicates.size()]));
-        //commented code above works for making counts AL parallel to noDuplicates, however, values are null (bc Integer is object type, not primiatve)
+        //commented code above works for making counts AL parallel to noDuplicates, however, values are null (bc Integer is object type, not primitive)
 
         //for loop so AL are the same size, however values aren't null
         ArrayList<Integer> counts = new ArrayList<>();
@@ -317,7 +320,7 @@ public class ChocolateRatingsCode {
         return totRatings;
     }
 
-    //helper method to calculate averages of ratings for a distict column
+    //helper method to calculate averages of ratings for a distinct column
     public static ArrayList<Double> averageRating(ArrayList<String> noDuplicates, ArrayList<Double> totRatings, ArrayList<Integer> counts){
         ArrayList<Double> averageRating = new ArrayList<>();
 
@@ -332,9 +335,13 @@ public class ChocolateRatingsCode {
     //methods specifically for newly added question 3B which is finding the best rated chocolate manufacturer from the best rated country of production
     //method gets only the items from one column based on the prior one
     public static ArrayList<String> specificItems(ArrayList<String> priorCol, ArrayList<String> currentCol, String item){
+        //ArrayList to hold only the items that match 'item'
         ArrayList<String> onlyItem = new ArrayList<>();
+
+        //loops through priorCol and checks to see if an item is the same as 'item'
         for(int i = 0; i<priorCol.size(); i++){
             if(priorCol.get(i).equals(item)){
+                //if it is the same, add it to the new AL
                 onlyItem.add(currentCol.get(i));
             }
         }
