@@ -7,7 +7,10 @@ To explore the question of what factors contribute to higher ratings in chocolat
 ### Questions in my Exploration: 
 1. Which country of bean origin produces the best chocolate (best average ratings)? the worst?
 2. What cocoa percentage produces the best chocolate (best average ratings)? the worst?
-3. Which company manufacturer gets the best average ratings? the lowest?
+3. 
+- a) Which country that has chocolate bar producing companies has the best average rating? the lowest?
+- b) Which company/manufacturer from the best rated country has the greatest average rating?
+
 4. Which year of doing these ratings has the highest average ratings? the lowest?
 
 ### Theories:
@@ -36,6 +39,9 @@ I knew that most of my ArrayLists would have to be parallel in order to make gre
 - `public static Double lowestAverageRatingValue(ArrayList<Double> averageRatings)`- does the same but for the lowest average rating
 
 To test my program, I first stayed local to my code and tested hard-coded data that I wrote into the main method. After I found those tests successful, I created a smaller CSV dataset file that rated yogurt (includng brands, flavour, base, and rating) and tested my code on that smaller scale. Once I knew that my code worked successfully with imported files (by manually tracing and checking the math done by the program), I finally used my official chocolateRatingsDataset.csv and then cleaned up my print statements to make reading my code more legible. 
+
+After I finished my code, I decided to go back and challenge myself to go deeper within my research and expand on question #3. Originally, I had just asked the question: which company/manufacturer has the best rated chocolate bars and which company/manufacturer has the worst? I wanted to expand on this by parsing through the countries in which all these companies were based and then finding, within the highest average rated country, which company had the highest average rating. This essentially meant further specifying what would be allowed in the new ArrayList being parsed. This also meant the addition of a new method:
+- `public static ArrayList<String> specificItems(ArrayList<String> priorCol, ArrayList<String> currentCol, String item)` - takes in priorCol, which is the original parsed ArrayList of the column in which the program wants the ArrayList being made to be guided by, currentCol, which is the parsed ArrayList of the column that the quesiton pertains to, and item, which is a String that should match the output of the prior question (i.e. Chile (for the country that the company is based in)); in this case, this method returns an ArrayList with only the companies within the country that produces choclate bars with the highest average ratings
 
 ### Challenges:
 I was struck by a lot of challenges while coding for this exploration. One challenge that stands out in particular was that my code read commas within quotes (so within on column) as delimiters and separated an element/token into multiple elements/tokens. This made it so the index for which column was being parsed was correct, however my code was retaining incorrect information reguarding the question asked. This problem was made obvious when I was unable to parse through the ratings (Rating) column within the CSV file due to an NumberFormatException, which should not have occured since Rating is a column of Doubles. Due to this, I decided to look at my CSV file on VSCode and saw that the program was parsing through the header correctly, so the index was correct; however due to commas in String tokens (within quotes), the program read them as delimeters and parsed through the wrong column (which were Strings and not Doubles). To fix this, my teacher, Ms. Zhu, gave me a line of code that the program would read and then know that commas within quotes should not be read as delimeters. 
