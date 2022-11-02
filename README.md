@@ -69,7 +69,7 @@ In answering this question, my code found that the country that produces the bes
 Once my program found that Chile was the country with chocolate bar producing companies that received the overall highest average rating, I went further into the question, asking which company/manufacturer within Chile received the highest average rating. This company is Obolo with average rating of 3.375.
 
 - Question #4: Which year of these reviews has the greatest average rating? The lowest?
-In answering this question, my code found that of the years that Brady has been rating chocolate bars, 2017 has the greatest average rating coming in at 3.62, while 2008 has the lowest average rating (3.0).
+In answering this question, my code found that of the years that Brady has been rating chocolate bars, 2017 has the greatest average rating coming in at around 3.62, while 2008 has the lowest average rating (3.0).
 
 ### Takeaways: 
 Major takeaways from this research include what to look for in the chocolate bars you buy. Based on the taste and preferences of Brady, I might now, when buying chocolate bars, be extra vigilant in finding chocolate that states that its cocoa bean origin is from Tobago and especially cautious of bars that have beans originating in Bali. I would also be attentive when looking at cocoa percent within my chocolate, making sure I find bars that have 53%. This research may also guide me in where to order my chocolate to optimize my pleasure when eating them. I also realize, due to finding which years had the highest average ratings from Brady, that some years Brady may have had harsher standards compared to other years (as he had more to compare it to); meaning I realize that his rating process/criteria may have changed over time.
