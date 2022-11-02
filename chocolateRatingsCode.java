@@ -5,7 +5,7 @@ public class ChocolateRatingsCode {
     public static void main(String[] args) throws FileNotFoundException {
         //**data set testing**
         System.out.println();
-        System.out.println("Chocolate Rankings Dataset Questions:");
+        System.out.println("Chocolate Ratings Dataset Questions:");
         System.out.println();
 
         //getting all ratings in an AL (used in all questions)
@@ -303,7 +303,7 @@ public class ChocolateRatingsCode {
             totRatings.add(0.0);
         }
 
-        //loops through the length of withDuplicates (parallel to ratings, but makes more local to whatever is input)
+        //loops through the length of withDuplicates (parallel to ratings for original question, but makes more local to whatever is input (for question #3))
         for(int i = 0; i<withDuplicates.size(); i++){
             //finding index of the item in the noDuplicates AL
             int index = noDuplicates.indexOf(withDuplicates.get(i));
